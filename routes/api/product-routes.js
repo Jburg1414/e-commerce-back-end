@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
-  Product.FindOne({
+  Product.findOne({
     where: { id: req.params.id},
     include: [Category,Tag]
   })
@@ -106,7 +106,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
-  Category.destroy({ where: { id: req.params.id}})
+  Product.destroy({ where: { id: req.params.id}})
   .then((dbProduct) => {
     if(!dbProduct) {
       res.status(404).json({message: "No product found with this id"});
